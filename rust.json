@@ -1,0 +1,7 @@
+{
+  "Vec": {
+    "prefix": "vec",
+    "body": "Vec<${0:_}>",
+    "description": "Prepares Vec<_> type annotation."
+  }
+}

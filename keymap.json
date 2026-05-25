@@ -1,0 +1,33 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "shift shift": "file_finder::Toggle",
+      "ctrl--": "zed::DecreaseBufferFontSize",
+      "ctrl-+": "zed::IncreaseBufferFontSize",
+      "ctrl-0": "zed::ResetBufferFontSize",
+
+      "ctrl-alt-+": "zed::IncreaseUiFontSize",
+      "ctrl-alt--": "zed::DecreaseUiFontSize",
+      "ctrl-alt-0": "zed::ResetUiFontSize",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {"ctrl-k ctrl-u": ["editor::ToggleComments",{ "advance_downwards": false },],
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    },
+  },
+]

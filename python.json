@@ -1,0 +1,21 @@
+{
+  "Main name check": {
+    "prefix": "main",
+    "body": [
+      "if __name__ == \"__main__\":",
+      "    ${0:main()}"
+    ],
+    "description": "Main check"
+  },
+
+  "Main name check with definition": {
+    "prefix": ["main", "dmain"],
+    "body": [
+      "def main():",
+      "    ${0:print('Hello world!')}",
+      "",
+      "if __name__ == \"__main__\":",
+      "    main()"
+    ],
+  }
+}

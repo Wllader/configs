@@ -1,0 +1,394 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "cli_default_open_behavior": "existing_window",
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "edit_predictions": {
+    "provider": "none"
+  },
+  "git_panel": {
+    "tree_view": false,
+    "dock": "left"
+  },
+  "agent": {
+    "dock": "right",
+    "default_profile": "write",
+    "tool_permissions": {
+      "tools": {
+        "fetch": {
+          "always_allow": [
+            {
+              "pattern": "^https?://docs\\.sista\\.tacr\\.cz"
+            }
+          ]
+        }
+      }
+    },
+    "default_model": {
+      "effort": "high",
+      "enable_thinking": true,
+      "provider": "copilot_chat",
+      "model": "gemini-3.1-pro-preview",
+    },
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "terminal": {},
+  "indent_guides": {
+    "coloring": "indent_aware",
+    "background_coloring": "disabled",
+  },
+  "inlay_hints": {
+    "enabled": true,
+  },
+  "colorize_brackets": true,
+  "base_keymap": "VSCode",
+  "gutter": {
+    "folds": true,
+  },
+  "buffer_font_fallbacks": ["Consolas"],
+  "buffer_font_family": "Monaspace Argon",
+  "buffer_font_features": {
+      "calt": true,
+      "liga": true,
+      "ss01": 0,
+      "ss02": 0,
+      "ss03": true,
+      "ss04": true,
+      "ss05": true,
+      "ss06": true,
+      "ss07": true,
+      "ss08": true,
+      "ss09": true,
+      "cv01": 2,
+      "cv31": true
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Colored Zed Icons Theme Dark",
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": "OLED Minimalist v3",
+
+  "use_on_type_format": false,
+  "format_on_save": "off",
+
+  "languages": {
+    "Python": {
+      "language_servers": [
+        "! pyright",
+        "! basedpyright",
+        "ty",
+        "ruff"
+      ],
+      "format_on_save": "off"
+    }
+  },
+
+  "lsp": {
+    "clangd": {
+      "binary": {
+        "arguments": [
+          "--log=verbose",
+          "--function-arg-placeholders=0"
+        ]
+      }
+    },
+    "rust-analyzer": {
+      "initialization_options": {
+        "checkOnSave": true,
+        "check": {
+          "command": "clippy",
+          "features": "all"
+        },
+        "completion": {
+          "callable": {
+            "snippets": "add_parentheses",
+          },
+          "snippets": {
+            "custom": {
+             	"Ok": {
+              		"postfix": "ok",
+              		"body": "Ok(${receiver})",
+              		"description": "Wrap the expression in a `Result::Ok`",
+              		"scope": "expr"
+             	},
+             	"Err": {
+              		"postfix": "err",
+              		"body": "Err(${receiver})",
+              		"description": "Wrap the expression in a `Result::Err`",
+              		"scope": "expr"
+             	},
+              "Box": {
+                "postfix": "box",
+                "body": "Box::new(${receiver})",
+                "requires": "std::boxed::Box",
+                "description": "Put the expression into a `Box`",
+                "scope": "expr"
+              },
+             	"Box::pin": {
+              		"postfix": "pinbox",
+              		"body": "Box::pin(${receiver})",
+              		"requires": "std::boxed::Box",
+              		"description": "Put the expression into a pinned `Box`",
+              		"scope": "expr"
+             	},
+             	"Arc::new": {
+              		"postfix": "arc",
+              		"body": "Arc::new(${receiver})",
+              		"requires": "std::sync::Arc",
+              		"description": "Put the expression into an `Arc`",
+              		"scope": "expr"
+             	},
+             	"Rc::new": {
+              		"postfix": "rc",
+              		"body": "Rc::new(${receiver})",
+              		"requires": "std::rc::Rc",
+              		"description": "Put the expression into an `Rc`",
+              		"scope": "expr"
+             	},
+             	"Some": {
+              		"postfix": "some",
+              		"body": "Some(${receiver})",
+              		"description": "Wrap the expression in an `Option::Some`",
+              		"scope": "expr"
+             	}
+            }
+          }
+        },
+        "procMacro": {
+          "enable": true
+        },
+        "cargo": {
+          "buildScripts": {
+            "enable": true
+          }
+        },
+        "inlayHints": {
+          "maxLength": 25,
+          "lifetimeElisionHints": {
+            "enable": "skip_trivial",
+            "useParameterNames": true
+          },
+          "closureReturnTypeHints": {
+            "enable": "always"
+          },
+          "chainingHints": {
+            "enable": true
+          }
+        }
+      }
+    },
+    "ty": {
+      "settings": {
+        "completions": {
+          "autoImport": false
+        }
+      }
+    },
+    "gdscript": {
+      "initialization_options": {
+        "show_native_symbols_in_editor": true
+      }
+    }
+  },
+  "file_types": {
+    "C++": ["tpp"]
+  },
+
+
+  "show_signature_help_after_edits": true,
+
+  "semantic_tokens": "combined",
+  "global_lsp_settings": {
+    "semantic_token_rules": [
+      // --- BASE USAGES (Bold, no underline) ---
+      {
+        "token_type": "class",
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold"
+      },
+      {
+        "token_type": "struct",
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold"
+      },
+      {
+        "token_type": "enum",
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold"
+      },
+      {
+        "token_type": "interface",
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold"
+      },
+      {
+        "token_type": "typeAlias",
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold"
+      },
+      {
+        "token_type": "type",
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold"
+      },
+      {
+        "token_type": "function",
+        "foreground_color": "#EBEBB0",
+        "font_weight": "bold"
+      },
+      {
+        "token_type": "method",
+        "foreground_color": "#EBEBB0",
+        "font_weight": "bold"
+      },
+      {
+        "token_type": "macro",
+        "foreground_color": "#C8E898",
+        "font_weight": "bold"
+      },
+      {
+        "token_type": "lifetime",
+        "foreground_color": "#FF94A4",
+        "font_style": "italic"
+      },
+
+      // --- ENUM MEMBERS (Blue, no bold) ---
+      {
+        "token_type": "enumMember",
+        "foreground_color": "#6CBDF5"
+      },
+
+      // --- DECLARATIONS & DEFINITIONS (Underlined) ---
+      {
+        "token_type": "class",
+        "token_modifiers": ["declaration"],
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "class",
+        "token_modifiers": ["definition"],
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "struct",
+        "token_modifiers": ["declaration"],
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "struct",
+        "token_modifiers": ["definition"],
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "enum",
+        "token_modifiers": ["declaration"],
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "enum",
+        "token_modifiers": ["definition"],
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "interface",
+        "token_modifiers": ["declaration"],
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "interface",
+        "token_modifiers": ["definition"],
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "typeAlias",
+        "token_modifiers": ["declaration"],
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "typeAlias",
+        "token_modifiers": ["definition"],
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "type",
+        "token_modifiers": ["declaration"],
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "type",
+        "token_modifiers": ["definition"],
+        "foreground_color": "#50D8BC",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "function",
+        "token_modifiers": ["declaration"],
+        "foreground_color": "#EBEBB0",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "function",
+        "token_modifiers": ["definition"],
+        "foreground_color": "#EBEBB0",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "method",
+        "token_modifiers": ["declaration"],
+        "foreground_color": "#EBEBB0",
+        "font_weight": "bold",
+        "underline": true
+      },
+      {
+        "token_type": "method",
+        "token_modifiers": ["definition"],
+        "foreground_color": "#EBEBB0",
+        "font_weight": "bold",
+        "underline": true
+      }
+    ]
+  }
+}

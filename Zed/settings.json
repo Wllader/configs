@@ -27,17 +27,6 @@
   "agent": {
     "dock": "right",
     "default_profile": "write",
-    "tool_permissions": {
-      "tools": {
-        "fetch": {
-          "always_allow": [
-            {
-              "pattern": "^https?://docs\\.sista\\.tacr\\.cz"
-            }
-          ]
-        }
-      }
-    },
     "default_model": {
       "effort": "high",
       "enable_thinking": true,

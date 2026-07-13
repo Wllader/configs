@@ -7,6 +7,14 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "diff_view_style": "split",
+  "code_lens": "off",
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  },
+  "buffer_line_height": "standard",
   "cli_default_open_behavior": "existing_window",
   "project_panel": {
     "dock": "left"
@@ -26,30 +34,54 @@
   },
   "agent": {
     "dock": "right",
+    "sidebar_side": "right",
+    "tool_permissions": {
+      "tools": {
+        "fetch": {
+          "always_allow": [
+            {
+              "pattern": "^https?://www\\.nuget\\.org"
+            },
+            {
+              "pattern": "^https?://github\\.com"
+            },
+            {
+              "pattern": "^https?://raw\\.githubusercontent\\.com"
+            }
+          ]
+        }
+      }
+    },
     "default_profile": "write",
     "default_model": {
       "effort": "high",
       "enable_thinking": true,
       "provider": "copilot_chat",
-      "model": "gemini-3.1-pro-preview",
+      "model": "claude-sonnet-4.6",
     },
     "favorite_models": [],
     "model_parameters": [],
   },
-  "terminal": {},
-  "indent_guides": {
+  "terminal": {
+      "env": {
+        "LANG": "en_US.UTF-8",
+        "LC_ALL": "en_US.UTF-8",
+        "DOTNET_CLI_UI_LANGUAGE": "en-US"
+      }
+    },
+    "indent_guides": {
     "coloring": "indent_aware",
     "background_coloring": "disabled",
   },
   "inlay_hints": {
-    "enabled": true,
+    "enabled": false,
   },
   "colorize_brackets": true,
   "base_keymap": "VSCode",
   "gutter": {
     "folds": true,
   },
-  "buffer_font_fallbacks": ["Consolas"],
+  "buffer_font_fallbacks": [".ZedMono"],
   "buffer_font_family": "Monaspace Argon",
   "buffer_font_features": {
       "calt": true,
@@ -77,16 +109,29 @@
 
   "use_on_type_format": false,
   "format_on_save": "off",
+  "remove_trailing_whitespace_on_save": true,
 
   "languages": {
     "Python": {
       "language_servers": [
         "! pyright",
         "! basedpyright",
-        "ty",
+        "! ty",
         "ruff"
       ],
       "format_on_save": "off"
+    },
+    "CSharp": {
+      "format_on_save": "on",
+      "code_actions_on_format": {
+        "source.fixAll": true,
+        "source.organizeImports": true
+      },
+      "language_servers": [
+        "! roslyn",
+        "! omnisharp",
+        "csharp-ls"
+      ]
     }
   },
 
@@ -191,9 +236,25 @@
         }
       }
     },
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          "lint": {
+            "ignore": ["F403", "E401", "F405"]
+          }
+        }
+      },
+    },
     "gdscript": {
       "initialization_options": {
         "show_native_symbols_in_editor": true
+      }
+    },
+    "csharp-ls": {
+      "binary": {
+        "env": {
+          "DOTNET_CLI_UI_LANGUAGE": "en-US"
+        }
       }
     }
   },
@@ -201,183 +262,62 @@
     "C++": ["tpp"]
   },
 
-
   "show_signature_help_after_edits": true,
+
+  "theme_overrides": {
+    "OLED Minimalist v3": {
+      "syntax": {
+        "constant.comment.todo": {
+          "color": "#FF8C00",
+          "font_style": "italic"
+        },
+        "string.comment.info": {
+          "color": "#3498D8"
+        },
+        "property.comment.error": {
+          "color": "#FF2D00"
+        },
+      }
+    }
+  },
 
   "semantic_tokens": "combined",
   "global_lsp_settings": {
     "semantic_token_rules": [
-      // --- BASE USAGES (Bold, no underline) ---
-      {
-        "token_type": "class",
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold"
-      },
-      {
-        "token_type": "struct",
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold"
-      },
-      {
-        "token_type": "enum",
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold"
-      },
-      {
-        "token_type": "interface",
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold"
-      },
-      {
-        "token_type": "typeAlias",
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold"
-      },
-      {
-        "token_type": "type",
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold"
-      },
-      {
-        "token_type": "function",
-        "foreground_color": "#EBEBB0",
-        "font_weight": "bold"
-      },
-      {
-        "token_type": "method",
-        "foreground_color": "#EBEBB0",
-        "font_weight": "bold"
-      },
-      {
-        "token_type": "macro",
-        "foreground_color": "#C8E898",
-        "font_weight": "bold"
-      },
-      {
-        "token_type": "lifetime",
-        "foreground_color": "#FF94A4",
-        "font_style": "italic"
-      },
-
-      // --- ENUM MEMBERS (Blue, no bold) ---
-      {
-        "token_type": "enumMember",
-        "foreground_color": "#6CBDF5"
-      },
-
-      // --- DECLARATIONS & DEFINITIONS (Underlined) ---
-      {
-        "token_type": "class",
-        "token_modifiers": ["declaration"],
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "class",
-        "token_modifiers": ["definition"],
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "struct",
-        "token_modifiers": ["declaration"],
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "struct",
-        "token_modifiers": ["definition"],
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "enum",
-        "token_modifiers": ["declaration"],
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "enum",
-        "token_modifiers": ["definition"],
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "interface",
-        "token_modifiers": ["declaration"],
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "interface",
-        "token_modifiers": ["definition"],
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "typeAlias",
-        "token_modifiers": ["declaration"],
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "typeAlias",
-        "token_modifiers": ["definition"],
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "type",
-        "token_modifiers": ["declaration"],
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "type",
-        "token_modifiers": ["definition"],
-        "foreground_color": "#50D8BC",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "function",
-        "token_modifiers": ["declaration"],
-        "foreground_color": "#EBEBB0",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "function",
-        "token_modifiers": ["definition"],
-        "foreground_color": "#EBEBB0",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "method",
-        "token_modifiers": ["declaration"],
-        "foreground_color": "#EBEBB0",
-        "font_weight": "bold",
-        "underline": true
-      },
-      {
-        "token_type": "method",
-        "token_modifiers": ["definition"],
-        "foreground_color": "#EBEBB0",
-        "font_weight": "bold",
-        "underline": true
-      }
+      { "token_type": "function", "token_modifiers": ["defaultLibrary"], "font_weight": "normal" },
+      { "token_type": "method", "token_modifiers": ["defaultLibrary"], "font_weight": "normal" },
+      { "token_type": "method", "token_modifiers": ["static"], "foreground_color": "#fdc46c", "font_weight": "bold" },
+      { "token_type": "method", "foreground_color": "#EBEBB0", "font_weight": "bold" },
+      { "token_type": "function", "token_modifiers": ["static"], "foreground_color": "#fdc46c", "font_weight": "bold" },
+      { "token_type": "function", "foreground_color": "#EBEBB0", "font_weight": "bold" },
+      { "token_type": "macro", "foreground_color": "#C8E898", "font_weight": "bold" },
+      { "token_type": "comment" },
+      { "token_type": "class", "foreground_color": "#50D8BC", "font_weight": "bold" },
+      { "token_type": "struct", "foreground_color": "#50D880", "font_weight": "bold" },
+      { "token_type": "enum", "foreground_color": "#50d8d8", "font_weight": "bold" },
+      { "token_type": "interface", "foreground_color": "#50D8BC", "font_weight": "bold" },
+      { "token_type": "typeAlias", "foreground_color": "#50D8BC", "font_weight": "bold" },
+      { "token_type": "type", "foreground_color": "#50D8BC", "font_weight": "bold" },
+      { "token_type": "lifetime", "foreground_color": "#FF94A4", "font_style": "italic" },
+      { "token_type": "enumMember", "foreground_color": "#6CBDF5" },
+      { "token_type": "class", "token_modifiers": ["declaration"], "foreground_color": "#50D8BC", "font_weight": "bold", "underline": true },
+      { "token_type": "class", "token_modifiers": ["definition"], "foreground_color": "#50D8BC", "font_weight": "bold", "underline": true },
+      { "token_type": "struct", "token_modifiers": ["declaration"], "foreground_color": "#50D880", "font_weight": "bold", "underline": true },
+      { "token_type": "struct", "token_modifiers": ["definition"], "foreground_color": "#50D880", "font_weight": "bold", "underline": true },
+      { "token_type": "enum", "token_modifiers": ["declaration"], "foreground_color": "#50d8d8", "font_weight": "bold", "underline": true },
+      { "token_type": "enum", "token_modifiers": ["definition"], "foreground_color": "#50d8d8", "font_weight": "bold", "underline": true },
+      { "token_type": "interface", "token_modifiers": ["declaration"], "foreground_color": "#50D8BC", "font_weight": "bold", "underline": true },
+      { "token_type": "interface", "token_modifiers": ["definition"], "foreground_color": "#50D8BC", "font_weight": "bold", "underline": true },
+      { "token_type": "typeAlias", "token_modifiers": ["declaration"], "foreground_color": "#50D8BC", "font_weight": "bold", "underline": true },
+      { "token_type": "typeAlias", "token_modifiers": ["definition"], "foreground_color": "#50D8BC", "font_weight": "bold", "underline": true },
+      { "token_type": "type", "token_modifiers": ["declaration"], "foreground_color": "#50D8BC", "font_weight": "bold", "underline": true },
+      { "token_type": "type", "token_modifiers": ["definition"], "foreground_color": "#50D8BC", "font_weight": "bold", "underline": true },
+      { "token_type": "function", "token_modifiers": ["declaration"], "foreground_color": "#EBEBB0", "font_weight": "bold", "underline": true },
+      { "token_type": "function", "token_modifiers": ["definition"], "foreground_color": "#EBEBB0", "font_weight": "bold", "underline": true },
+      { "token_type": "method", "token_modifiers": ["declaration"], "foreground_color": "#EBEBB0", "font_weight": "bold", "underline": true },
+      { "token_type": "method", "token_modifiers": ["definition"], "foreground_color": "#EBEBB0", "font_weight": "bold", "underline": true },
+      { "token_type": "macro", "token_modifiers": ["definition"], "foreground_color": "#C8E898", "font_weight": "bold", "underline": true },
+      { "token_type": "macro", "token_modifiers": ["declaration"], "foreground_color": "#C8E898", "font_weight": "bold", "underline": true }
     ]
   }
 }

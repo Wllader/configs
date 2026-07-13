@@ -17,11 +17,26 @@
       "ctrl-alt-+": "zed::IncreaseUiFontSize",
       "ctrl-alt--": "zed::DecreaseUiFontSize",
       "ctrl-alt-0": "zed::ResetUiFontSize",
+
     },
   },
   {
     "context": "Editor",
-    "bindings": {"ctrl-k ctrl-u": ["editor::ToggleComments",{ "advance_downwards": false },],
+    "bindings": {
+      "alt-up": "editor::MoveLineUp",
+      "alt-down": "editor::MoveLineDown",
+      "shift-alt-up": "editor::DuplicateLineUp",
+      "shift-alt-down": "editor::DuplicateLineDown",
+
+      "ctrl-k ctrl-u": ["editor::ToggleComments",{ "advance_downwards": false },],
+      "ctrl-shift-ů": [
+        "action::Sequence",
+        [
+          "editor::ToggleCodeLens",
+          "editor::ToggleInlayHints"
+        ]
+      ],
+      "ctrl-shift-§": "editor::ToggleInlineDiagnostics",
     },
   },
   {
@@ -30,4 +45,10 @@
       // "j k": "vim::NormalBefore"
     },
   },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-shift-§": "editor::ExpandAllDiffHunks"
+    }
+  }
 ]

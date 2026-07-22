@@ -38,17 +38,29 @@
       ],
       "ctrl-shift-§": "editor::ToggleInlineDiagnostics",
     },
-  },
-  {
-    "context": "Editor && vim_mode == insert",
-    "bindings": {
-      // "j k": "vim::NormalBefore"
-    },
-  },
-  {
-    "context": "Editor",
     "unbind": {
-      "ctrl-shift-§": "editor::ExpandAllDiffHunks"
+      "ctrl-shift-§": "editor::ExpandAllDiffHunks",
     }
-  }
+  },
+
+  // Vim:
+  // {
+  //   "context": "vim_mode",
+  //   "bindings": {
+  //     "ctrl-j": ["workspace::SendKeystrokes", "enter"]
+  //   },
+  // },
+  // {
+  //   "context": "Editor && vim_mode == insert",
+  //   "bindings": {
+  //     "ctrl-p": "editor::ShowCompletions",
+  //   },
+  // },
+  // {
+  //   "context": "vim_mode && Editor && (showing_code_actions || showing_completions)",
+  //   "bindings": {
+  //     "ctrl-p": "editor::ContextMenuNext",
+  //     "ctrl-n": "editor::ContextMenuPrevious",
+  //   }
+  // },
 ]

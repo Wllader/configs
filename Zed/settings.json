@@ -7,11 +7,20 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  // Vim specific:
+  // "show_completions_on_input": false,
+  // "show_edit_predictions": false,
+
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
   "diff_view_style": "split",
   "code_lens": "off",
   "diagnostics": {
     "inline": {
-      "enabled": true
+      "enabled": false
     }
   },
   "buffer_line_height": "standard",
